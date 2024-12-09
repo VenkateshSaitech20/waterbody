@@ -1,0 +1,55 @@
+/*
+  Warnings:
+
+  - You are about to drop the `invasive_species` table. If the table is not empty, all the data it contains will be lost.
+  - You are about to drop the `retaining_wall_condition` table. If the table is not empty, all the data it contains will be lost.
+  - You are about to drop the `retaining_walls` table. If the table is not empty, all the data it contains will be lost.
+
+*/
+-- DropTable
+DROP TABLE `invasive_species`;
+
+-- DropTable
+DROP TABLE `retaining_wall_condition`;
+
+-- DropTable
+DROP TABLE `retaining_walls`;
+
+-- CreateTable
+CREATE TABLE `master_invasive_species` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(200) NOT NULL,
+    `slug` VARCHAR(191) NOT NULL,
+    `createdBy` VARCHAR(191) NULL,
+    `updatedBy` VARCHAR(191) NULL,
+    `createdAt` DATE NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updatedAt` DATE NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `master_retaining_walls` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(200) NOT NULL,
+    `slug` VARCHAR(191) NOT NULL,
+    `createdBy` VARCHAR(191) NULL,
+    `updatedBy` VARCHAR(191) NULL,
+    `createdAt` DATE NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updatedAt` DATE NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `master_retaining_wall_condition` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(200) NOT NULL,
+    `slug` VARCHAR(191) NOT NULL,
+    `createdBy` VARCHAR(191) NULL,
+    `updatedBy` VARCHAR(191) NULL,
+    `createdAt` DATE NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updatedAt` DATE NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

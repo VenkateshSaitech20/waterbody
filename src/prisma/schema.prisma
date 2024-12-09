@@ -1,0 +1,1347 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "debian-openssl-3.0.x", "linux-arm64-openssl-1.1.x", "rhel-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model user {
+  id                String    @id @default(cuid())
+  name              String?
+  email             String?
+  password          String?
+  contactNo         String?   
+  address           String?
+  state             String?
+  zipCode           String?
+  countryId         Int?
+  country           String?
+  stateId           Int?
+  phoneCode         String?   @db.VarChar(8)
+  language          String?
+  companyName       String?
+  roleId            String?      @default("3")
+  roleName          String?      @default("customer")
+  profileStatus     String?
+  image             String?
+  isDeleted         String?      @default("N")
+  createdBy         String?
+  packageId         String?  
+  packageName       String?  
+  packageValidity   String?
+  purchaseDate      DateTime  @default(now())
+  expirayDate       DateTime?
+  paymentMethod     String?
+  isExpired         String?
+  amount            String?  
+  currency          String?  
+  paymentStatus     String?  
+  paymentId         String?
+  adminApprovalId   String?    @default("3")
+  deviceToken       String?
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+}
+
+model verification_token {
+  identifier String
+  token      String   @unique(map: "VerificationToken_token_key")
+  expires    DateTime
+
+  @@unique([identifier, token], map: "VerificationToken_identifier_token_key")
+}
+
+model role {
+    id              String @id @default(cuid())
+    userId          String?
+    roleName        String?
+    permissions     Json
+    name            String?
+    isAssigned      String?   @default("N")
+    createdBy       String?   
+    createdUserId   String?   
+    isDeleted       String?   @default("N")
+    createdAt       DateTime  @default(now())
+    updatedAt       DateTime  @updatedAt
+}   
+
+model menus {
+    id              String @id @default(cuid())
+    menuId          String?
+    menu            String?
+    subMenu         String?
+    slugName        String?
+    permission      Json?
+    path            String?
+    sequence        String?
+    createdAt       DateTime           @default(now())
+    updatedAt       DateTime           @updatedAt
+}
+
+model system_settings {
+  id                String    @id @default(cuid())
+  systemName        String?
+  description       String?
+  systemImage       String?
+  navbarImage       String?
+  metaTitle         String?
+  location          String?
+  facebookLink      String?
+  instagramLink     String?
+  linkedInLink      String?
+  twitterLink       String?
+  youtubeLink       String?
+  email             String?
+  contactNo         String?
+  updatedUser       String?
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+}
+
+model features {
+  id                  String    @id @default(cuid())
+  image               String?
+  title               String?  
+  description         String?  @db.VarChar(512)
+  updatedUser         String?
+  isDeleted           String?     @default("N")
+  createdAt              DateTime  @default(now())
+  updatedAt              DateTime  @updatedAt
+}
+
+model our_team {
+  id                     String    @id @default(cuid())
+  image                  String?
+  title                  String?  
+  description            String?  @db.VarChar(512)
+  updatedUser            String?
+  isDeleted           String?     @default("N")
+  createdAt              DateTime  @default(now())
+  updatedAt              DateTime  @updatedAt
+}
+
+model key_achievements {
+  id          String   @id @default(cuid())
+  image       String?
+  keyMetric   String?
+  highlight   String?
+  isDeleted   String?  @default("N")
+  createdUser String?
+  updatedUser String?
+  postedBy    String?  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model faq {
+  id                    String   @id @default(cuid())
+  badgeTitle            String?  
+  title                 String?  
+  description           String?  @db.LongText
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+}
+
+model questionanswer{
+  id                    String   @id @default(cuid())
+  question              String? 
+  answer                String?   @db.LongText
+  isDeleted             String?   @default("N")
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+}
+
+model testimonial_reviews {
+  id                     String    @id @default(cuid())
+  image            String? 
+  description      String?  @db.LongText
+  rating           String?  
+  postedBy         String?  
+  designation      String?  
+  isDeleted         String?      @default("N")
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+}
+
+model contact_us {
+  id                    String   @id @default(cuid())
+  badgeTitle            String?  @db.LongText
+  title                 String?  @db.LongText
+  description           String?  @db.LongText
+  cardTitle             String?  @db.LongText
+  cardDescription       String?  @db.LongText
+  isfrontendvisible     String?
+  createdUser           String?
+  updatedUser           String?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+}
+
+model customer_enquiries {
+  id                    String    @id @default(cuid())
+  name                  String?  
+  email                 String?  
+  message               String?   @db.LongText
+  createdAt             DateTime  @default(now())
+}
+
+model brands {
+  id                  String    @id @default(cuid())
+  image               String? 
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+}
+
+model subscribers {
+  id                  String    @id @default(cuid())
+  email               String? 
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+}
+
+model country {
+  id        Int      @id @default(autoincrement())
+  name      String
+  shortname  String   @db.VarChar(3)
+  phoneCode String   @db.VarChar(8)
+  createdUser String?
+  createdAt DateTime @default(now())
+  updatedUser String?
+  updatedAt DateTime @updatedAt
+  isDeleted String   @default("N")
+  isActive  String   @default("Y")
+}
+
+model state {
+  id        Int      @id @default(autoincrement())
+  name      String 
+  countryId Int
+  country   String?
+  lgdCode   String?
+  createdUser String?
+  createdAt DateTime @default(now())
+  updatedUser String?
+  updatedAt DateTime @updatedAt
+  isDeleted String   @default("N")
+  isActive  String   @default("Y")
+}
+
+model city {
+  id       Int     @id @default(autoincrement())
+  name     String
+  lgdCode  String?
+  shortname  String   @db.VarChar(3)
+  country  String
+  countryId Int
+  state    String
+  stateId  Int
+  createdUser String?
+  createdAt DateTime @default(now())
+  updatedUser String?
+  updatedAt DateTime @updatedAt
+  isDeleted String   @default("N")
+  isActive  String   @default("Y")
+}
+
+model district {
+  id        Int      @id @default(autoincrement())
+  name      String
+  lgdCode  String?
+  countryId Int    
+  country   String
+  stateId   Int  
+  state     String
+  cityId    Int   
+  city      String  
+  createdUser String?
+  createdAt DateTime @default(now())
+  updatedUser String?
+  updatedAt DateTime @updatedAt
+  isDeleted String   @default("N")
+  isActive  String   @default("Y")
+}
+
+model section_content {
+  id                    Int    @id @default(autoincrement())
+  sectionType           String?
+  badgeTitle            String?  
+  title                 String?  
+  description           String?  @db.VarChar(512)
+  image1                String?
+  image2                String?
+  isfrontendvisible     String?   @default("Y")
+  discount              String?
+  createdUser           String?
+  updatedUser           String?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+}
+
+model package_plans {
+  id                  String    @id @default(cuid())
+  title               String? 
+  subTitle            String?
+  monthlyPrice        String? 
+  yearlyPlan          Json?
+  popularPlan         String?
+  planBenefits        Json?
+  image               String?
+  roleId              String?
+  roleName            String?
+  createdUser         String?
+  updatedUser         String?
+  isDeleted           String?   @default("N")
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+}
+
+model email_setting {
+  id                  Int    @id @default(autoincrement())
+  email               String? 
+  emailCompany        String?
+  emailType           String?
+  apiKey              String?
+  password            String?
+  createdUserId       String?
+  updatedUserId       String?
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+}
+
+model sent_emails {
+  id                  Int       @id @default(autoincrement())
+  from                String? 
+  to                  String?   @db.LongText
+  subject             String?   @db.LongText
+  message             String?   @db.LongText
+  templateId          Int?
+  templateCategory    String?
+  sentBy              String?
+  sendMailTo          String?
+  createdAt           DateTime  @default(now())
+}
+
+model email_templates {
+  id                  Int       @id @default(autoincrement())
+  category            String? 
+  slugCategory        String? 
+  message             String?   @db.LongText
+  isActive            String?
+  isDeleted           String?   @default("N")
+  createdBy           String?
+  updatedBy           String?
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+}
+
+model configure_subscription {
+  id                 String    @id @default(cuid())
+  name               String?  
+  publicKey          String? 
+  privateKey         String?
+  isActive           String?   @default("N")
+  type               String?
+  createdUser        String?
+  updatedUser        String?
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+}
+
+model sms_setting {
+  id                  Int    @id @default(autoincrement())
+  mobile              String? 
+  smsType             String?
+  publicKey           String?
+  authKey             String?
+  createdBy           String?
+  updatedBy           String?
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+}
+model whats_app_setting {
+  id                  Int    @id @default(autoincrement())
+  mobile              String? 
+  whatsAppType        String?
+  publicKey          String?
+  authKey           String?
+  createdBy           String?
+  updatedBy           String?
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+}
+
+model sent_sms {
+  id                  Int       @id @default(autoincrement())
+  from                String? 
+  to                  String?   @db.LongText
+  message             String?   @db.LongText
+  templateId          Int?
+  templateCategory    String?
+  sentBy              String?
+  sendSMSTo           String?
+  createdAt           DateTime  @default(now())
+}
+model sent_whats_app {
+  id                  Int       @id @default(autoincrement())
+  from                String? 
+  to                  String?   @db.LongText
+  message             String?   @db.LongText
+  templateId          Int?
+  templateCategory    String?
+  sentBy              String?
+  sendWhatsAppTo      String?
+  createdAt           DateTime  @default(now())
+}
+
+model sent_push_notification {
+  id                  Int       @id @default(autoincrement())
+  from                String? 
+  to                  String?   @db.LongText
+  title               String?
+  message             String?   @db.LongText
+  templateId          Int?
+  templateCategory    String?
+  sentBy              String?
+  sendPushNotificationTo           String?
+  createdAt           DateTime  @default(now())
+}
+
+model sms_templates {
+  id                  Int       @id @default(autoincrement())
+  category            String? 
+  slugCategory        String? 
+  message             String?   @db.LongText
+  isActive            String?
+  isDeleted           String?   @default("N")
+  createdBy           String?
+  updatedBy           String?
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+}
+
+model whats_app_templates {
+  id                  Int       @id @default(autoincrement())
+  category            String? 
+  slugCategory        String? 
+  message             String?   @db.LongText
+  isActive            String?
+  isDeleted           String?   @default("N")
+  createdBy           String?
+  updatedBy           String?
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+}
+
+model push_notification_templates {
+  id                  Int       @id @default(autoincrement())
+  category            String? 
+  title               String? 
+  slugCategory        String? 
+  message             String?   @db.LongText
+  isActive            String?
+  isDeleted           String?   @default("N")
+  createdBy           String?
+  updatedBy           String?
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+}
+
+model voice_call_setting {
+  id                  Int    @id @default(autoincrement())
+  mobile              String? 
+  voiceCallType       String?
+  publicKey           String?
+  authKey             String?
+  createdBy           String?
+  updatedBy           String?
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+}
+
+model push_notification_setting {
+  id                  Int    @id @default(autoincrement())
+  pushNotificationType  String?
+  type             String? 
+  vapidKey         String?
+  projectId        String?
+  privateKeyId     String?
+  privateKey       String? @db.LongText
+  clientEmail      String?
+  clientId         String?
+  authUri          String?
+  tokenUri         String?
+  authProviderCertUrl   String?
+  clientCertUrl          String?
+  universeDomain               String?
+  createdBy           String?
+  updatedBy           String?
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+}
+
+model sent_voice_call {
+  id                  Int       @id @default(autoincrement())
+  from                String? 
+  to                  String?   @db.LongText
+  message             String?   @db.LongText
+  templateId          Int?
+  templateCategory    String?
+  sentBy              String?
+  sendVoiceCallTo     String?
+  createdAt           DateTime  @default(now())
+}
+
+model voice_call_templates {
+  id                  Int       @id @default(autoincrement())
+  category            String? 
+  slugCategory        String? 
+  message             String?   @db.LongText
+  isActive            String?
+  isDeleted           String?   @default("N")
+  createdBy           String?
+  updatedBy           String?
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+}
+
+model subscription_list {
+  id                 String    @id @default(cuid())
+  userId             String?  
+  name               String?  
+  email              String?  
+  contactNo          String?  
+  packageId          String?  
+  packageName        String?  
+  packageValidity    String?
+  purchaseDate       DateTime  @default(now())
+  expirayDate        DateTime?
+  paymentMethod      String?
+  isExpired          String?
+  amount             String?  
+  currency           String?  
+  paymentStatus      String?  
+  paymentId          String?  
+  roleId             String?  
+  roleName           String?  
+}
+
+model categories {
+  id                Int        @id @default(autoincrement())
+  categoryName      String
+  slug              String?
+  isActive          String     @default("Y")
+  isDeleted         String?    @default("N")
+  createdBy         String?
+  updatedBy         String?
+  createdAt         DateTime   @default(now())
+  updatedAt         DateTime   @updatedAt
+}
+
+model contents {
+  id                Int        @id @default(autoincrement())
+  image             String?
+  title             String
+  categoryId        String?
+  categoryName      String
+  slug              String?
+  shortContent      String?    @db.VarChar(300)
+  content           String?    @db.VarChar(3000)
+  postedBy          String?
+  isDeleted         String?    @default("N")
+  createdBy         String?
+  updatedBy         String?
+  createdAt         DateTime   @default(now())
+  updatedAt         DateTime   @updatedAt
+}
+
+model mail_templates {
+  id                Int        @id @default(autoincrement())
+  subject           String
+  message           String?    @db.VarChar(3000)
+  templateType      String?
+  createdBy         String?
+  updatedBy         String?
+  createdAt         DateTime   @default(now())
+  updatedAt         DateTime   @updatedAt
+}
+
+model master_availability {
+  id        Int      @id @default(autoincrement())
+  name      String?  @db.VarChar(200)
+  slug      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  createdBy String?
+  updatedBy String?
+}
+
+model master_ayacutnoncultivation {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime @default(now()) @db.Date
+  updatedAt DateTime @default(now()) @db.Date
+}
+
+model master_boundary_drop_points {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime @default(now()) @db.Date
+  updatedAt DateTime @default(now()) @db.Date
+}
+
+model master_bund_issue {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime @default(now()) @db.Date
+  updatedAt DateTime @default(now()) @db.Date
+}
+
+model master_barrel_types {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime @default(now()) @db.Date
+  updatedAt DateTime @default(now()) @db.Date
+}
+
+model master_bunds {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime @default(now()) @db.Date
+  updatedAt DateTime @default(now()) @db.Date
+}
+
+model master_conditions {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime @default(now()) @db.Date
+  updatedAt DateTime @default(now()) @db.Date
+}
+
+model master_catchment_types {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime @default(now()) @db.Date
+  updatedAt DateTime @default(now()) @db.Date
+}
+
+model master_croppings {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime @default(now()) @db.Date
+  updatedAt DateTime @default(now()) @db.Date
+}
+
+model master_cross_sections {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime @default(now()) @db.Date
+  updatedAt DateTime @default(now()) @db.Date
+}
+
+model master_distribution_lands {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime @default(now()) @db.Date
+  updatedAt DateTime @default(now()) @db.Date
+}
+
+model master_depth_sill_levels {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime @default(now()) @db.Date
+  updatedAt DateTime @default(now()) @db.Date
+}
+
+model master_exotic_species {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime @default(now()) @db.Date
+  updatedAt DateTime @default(now()) @db.Date
+}
+
+model master_family_natures {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime @default(now()) @db.Date
+  updatedAt DateTime @default(now()) @db.Date
+}
+
+model master_field_channel_types {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime @default(now()) @db.Date
+  updatedAt DateTime @default(now()) @db.Date
+}
+
+model master_fence_conditions {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime @default(now()) @db.Date
+  updatedAt DateTime @default(now()) @db.Date
+}
+
+model master_fence_types {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime @default(now()) @db.Date
+  updatedAt DateTime @default(now()) @db.Date
+}
+
+model master_ghat_conditions {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime @default(now()) @db.Date
+  updatedAt DateTime @default(now()) @db.Date
+}
+
+model master_inlet_types {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime @default(now()) @db.Date
+  updatedAt DateTime @default(now()) @db.Date
+}
+
+model master_nature_investments {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime @default(now()) @db.Date
+  updatedAt DateTime @default(now()) @db.Date
+}
+
+model master_ownerships {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime @default(now()) @db.Date
+  updatedAt DateTime @default(now()) @db.Date
+}
+
+model master_outlet_types {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime @default(now()) @db.Date
+  updatedAt DateTime @default(now()) @db.Date
+}
+
+model master_oorani_functions {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime @default(now()) @db.Date
+  updatedAt DateTime @default(now()) @db.Date
+}
+
+model master_mwl_stones {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime @default(now()) @db.Date
+  updatedAt DateTime @default(now()) @db.Date
+}
+
+model master_pitching_conditions {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime @default(now()) @db.Date
+  updatedAt DateTime @default(now()) @db.Date
+}
+
+model master_sources {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime @default(now()) @db.Date
+  updatedAt DateTime @default(now()) @db.Date
+}
+
+model master_spread_issues {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime @default(now()) @db.Date
+  updatedAt DateTime @default(now()) @db.Date
+}
+
+model master_sluices_surplus_types {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime @default(now()) @db.Date
+  updatedAt DateTime @default(now()) @db.Date
+}
+
+model master_surplus_weirs {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime @default(now()) @db.Date
+  updatedAt DateTime @default(now()) @db.Date
+}
+
+model master_slit_traps {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime @default(now()) @db.Date
+  updatedAt DateTime @default(now()) @db.Date
+}
+
+model master_stream_issues {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime @default(now()) @db.Date
+  updatedAt DateTime @default(now()) @db.Date
+}
+
+model master_shutters {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime @default(now()) @db.Date
+  updatedAt DateTime @default(now()) @db.Date
+}
+
+model master_shutter_conditions {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime @default(now()) @db.Date
+  updatedAt DateTime @default(now()) @db.Date
+}
+
+model master_stone_pitchings {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime @default(now()) @db.Date
+  updatedAt DateTime @default(now()) @db.Date
+}
+
+model master_types {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime @default(now()) @db.Date
+  updatedAt DateTime @default(now()) @db.Date
+}
+
+model master_tank_functions {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime @default(now()) @db.Date
+  updatedAt DateTime @default(now()) @db.Date
+}
+
+model master_tank_types {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime @default(now()) @db.Date
+  updatedAt DateTime @default(now()) @db.Date
+}
+
+model master_tank_uniqueness {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime @default(now()) @db.Date
+  updatedAt DateTime @default(now()) @db.Date
+}
+
+model master_temple_tank_types {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime @default(now()) @db.Date
+  updatedAt DateTime @default(now()) @db.Date
+}
+
+model master_tank_issues {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime @default(now()) @db.Date
+  updatedAt DateTime @default(now()) @db.Date
+}
+
+model block {
+  id          Int      @id @default(autoincrement())
+  name        String
+  slug        String
+  countryId   Int
+  country     String
+  stateId     Int
+  state       String
+  districtId  Int
+  district    String
+  talukId     Int
+  taluk       String
+  createdUser String?
+  createdAt   DateTime @default(now())
+  updatedUser String?
+  updatedAt   DateTime  @updatedAt
+  isDeleted   String   @default("N")
+  isActive    String   @default("Y")
+  lgdCode     String?
+}
+
+model taluks {
+  id          Int      @id @default(autoincrement())
+  name        String
+  slug        String
+  countryId   Int
+  country     String
+  stateId     Int
+  state       String
+  districtId  Int
+  district    String
+  createdUser String?
+  createdAt   DateTime @default(now())
+  updatedUser String?
+  updatedAt   DateTime  @updatedAt
+  isDeleted   String   @default("N")
+  isActive    String   @default("Y")
+  lgdCode     String?
+}
+
+model panchayats {
+  id          Int      @id @default(autoincrement())
+  name        String
+  slug        String
+  lgdCode     String?
+  countryId   Int
+  country     String
+  stateId     Int
+  state       String
+  districtId  Int
+  district    String
+  talukId     Int
+  taluk       String
+  blockId     Int
+  block       String
+  createdUser String?
+  createdAt   DateTime @default(now())
+  updatedUser String?
+  updatedAt   DateTime  @updatedAt
+  isDeleted   String   @default("N")
+  isActive    String   @default("Y")
+}
+
+model jurisdictions {
+  id          Int      @id @default(autoincrement())
+  name        String
+  slug        String
+  createdUser String?
+  updatedUser String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime  @updatedAt
+  isDeleted   String   @default("N")
+  isActive    String   @default("Y")
+}
+
+model habitations {
+  id          Int      @id @default(autoincrement())
+  name        String
+  slug        String
+  lgdCode     String?
+  countryId   Int
+  country     String
+  stateId     Int
+  state       String
+  districtId  Int
+  district    String
+  talukId     Int
+  taluk       String
+  blockId     Int
+  block       String
+  panchayatId Int
+  panchayat   String
+  createdUser String?
+  createdAt   DateTime @default(now())
+  updatedUser String?
+  updatedAt   DateTime  @updatedAt
+  isDeleted   String   @default("N")
+  isActive    String   @default("Y")
+}
+
+model urban_local_bodies {
+  id              Int      @id @default(autoincrement())
+  name            String 
+  nameSlug        String
+  jurisdictionId  Int
+  jurisdiction    String?
+  wardCode        String?
+  ward            String?
+  slug            String?
+  isDeleted       String   @default("N")
+  isActive        String   @default("Y")
+  createdUser     String?
+  updatedUser     String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model government_water_bodies {
+  id           Int      @id @default(autoincrement())
+  uniqueId     String?
+  pond         String?
+  slug         String?
+  latitude     String?
+  longitude    String?
+  taluk        String?
+  village      String?
+  isDeleted    String? @default("N")
+  createdBy    String?
+  updatedBy    String?
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+}
+
+model water_body_maps {
+  id             Int      @id @default(autoincrement())
+  district       String?
+  slug           String?
+  geoJsonFiles   Json?
+  createdBy      String?
+  updatedBy      String?
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+}
+
+model water_body_reviews {
+  id                      Int      @id @default(autoincrement())
+  surveyNumber            String?
+  waterBodyType           String?
+  waterBodyAvailability   Boolean?
+  waterBodyId             String?
+  waterBodyName           String?
+  district                String?
+  taluk                   String?
+  block                   String?
+  panchayat               String?
+  village                 String?
+  jurisdiction            String?
+  name                    String?
+  ward                    String?
+  waterParams             Json?
+  gpsCordinates           Json?
+  images                  Json?
+  draftStatus             Int?
+  verifyStatus            Int?    @default(0)
+  isDeleted               String? @default("N")
+  createdBy               String?
+  updatedBy               String?
+  createdAt               DateTime   @default(now())
+  updatedAt               DateTime   @updatedAt
+}
+
+model foundations{
+  id                      Int      @id @default(autoincrement())
+  title                 String? 
+  description           String?   @db.LongText
+  isDeleted             String?   @default("N")
+  createdBy             String?
+  updatedBy             String?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+}
+
+model tank_water_bodies {
+  id               Int      @id @default(autoincrement())
+  uniqueId         String?
+  tankName         String?
+  slug             String?
+  district         String?
+  block            String?
+  panchayat        String?
+  village          String?
+  tankType         String?
+  ayacut           String?
+  watSprAr         String?
+  capMcm           String?
+  noOfSluices      String?
+  sluicesType      String?
+  bundLength       String?
+  tbl              String?
+  mwl              String?
+  ftl              String?
+  stoDepth         String?
+  catchment        String?
+  noOFWeirs        String?
+  weirLength       String?
+  lowSill          String?
+  disCusecs        String?
+  isDeleted        String?    @default("N")
+  createdBy        String?
+  updatedBy        String?
+  createdAt        DateTime   @default(now())
+  updatedAt        DateTime   @updatedAt
+}
+
+model pwd_tanks {
+  id               Int      @id @default(autoincrement())
+  uniqueId         String?
+  tankName         String?
+  slug             String?
+  district         String?
+  taluk            String?
+  block            String?
+  village          String?
+  subBasin         String?
+  basin            String?
+  section          String?
+  subDn            String?
+  division         String?
+  circle           String?
+  region           String?
+  tankType         String?
+  capacity         String?
+  ftl              String?
+  mwl              String?
+  tbl              String?
+  storageDepth     String?
+  ayacut           String?
+  catchmentArea    String?
+  watSpread        String?
+  noOfWeirs        String?
+  weirLength       String?
+  noOfSluices      String?
+  lowestSill       String?
+  bundLength       String?
+  discharge        String?
+  isDeleted        String?    @default("N")
+  createdBy        String?
+  updatedBy        String?
+  createdAt        DateTime   @default(now())
+  updatedAt        DateTime   @updatedAt
+}
+
+
+model volunteers {
+  id               Int      @id @default(autoincrement())
+  name             String?
+  mobile           String?
+  email            String?
+  volunteeringFor  String?
+  taluk            String?
+  block            String?
+  createdAt        DateTime   @default(now())
+  updatedAt        DateTime   @updatedAt
+}
+
+model months {
+  id               Int      @id @default(autoincrement())
+  month            String?
+  createdAt        DateTime   @default(now())
+}
+
+model api_data_version {
+  id               Int        @id @default(autoincrement())
+  version          Int?       @default(1)
+  updatedAt        DateTime   @updatedAt
+  updatedBy        String?
+}
+
+model master_dam_stones {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime @default(now()) @db.Date
+  updatedAt DateTime @default(now()) @db.Date
+}
+
+model master_free_catchment {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime @default(now()) @db.Date
+  updatedAt DateTime @default(now()) @db.Date
+}
+
+model master_water_spread_area {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime @default(now()) @db.Date
+  updatedAt DateTime @default(now()) @db.Date
+}
+
+model master_surplus_weirs_parameters {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime @default(now()) @db.Date
+  updatedAt DateTime @default(now()) @db.Date
+}
+
+model master_invasive_species {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime @default(now()) @db.Date
+  updatedAt DateTime @default(now()) @db.Date
+}
+
+model master_retaining_walls {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime @default(now()) @db.Date
+  updatedAt DateTime @default(now()) @db.Date
+}
+
+model master_retaining_wall_condition {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime @default(now()) @db.Date
+  updatedAt DateTime @default(now()) @db.Date
+}
+
+model master_encroachment_details {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime @default(now()) @db.Date
+  updatedAt DateTime @default(now()) @db.Date
+}
+
+model master_surplus_issues {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime @default(now()) @db.Date
+  updatedAt DateTime @default(now()) @db.Date
+}
+
+model master_encroachers_living_standard {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime @default(now()) @db.Date
+  updatedAt DateTime @default(now()) @db.Date
+}
