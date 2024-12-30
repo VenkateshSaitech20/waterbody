@@ -21,7 +21,7 @@ import { getLocalizedUrl } from '@/utils/i18n'
 import axios from 'axios';
 import Loader from '@/components/loader'
 import CustomInputLabel from '@/components/asterick'
-import useDeviceToken from '@/app/api/api-utlis/get-fcm-token'
+// import useDeviceToken from '@/app/api/api-utlis/get-fcm-token'
 
 // Styled Custom Components
 const LoginIllustration = styled('img')(({ theme }) => ({
@@ -47,7 +47,8 @@ const Login = () => {
   const theme = useTheme();
   const { register, handleSubmit, formState: { errors }, setError } = useForm({ defaultValues: {} });
   const handleClickShowPassword = () => setIsPasswordShown(show => !show);
-  const deviceToken = useDeviceToken();
+  // const deviceToken = useDeviceToken();
+  const deviceToken = "";
 
   const onSubmit = async data => {
     setApiError('');

@@ -3,8 +3,10 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Chip from '@mui/material/Chip';
 import frontCommonStyles from '@views/front-pages/styles.module.css'
-import WaterBodyMap from '@/components/water-body-map';
+// import WaterBodyMap from '@/components/water-body-map';
 import { useIntersection } from '@/hooks/useIntersection';
+import dynamic from 'next/dynamic';
+const WaterBodyMap = dynamic(() => import('@/components/water-body-map'), { ssr: false });
 
 const LandingWaterBodyMap = () => {
   const skipIntersection = useRef(true);

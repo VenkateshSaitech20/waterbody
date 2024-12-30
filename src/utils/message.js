@@ -19,6 +19,8 @@ export const validations = {
 export const registerData = {
   // Required message
   nameReq: 'Name is required',
+  firstNameReq: 'First name is required',
+  lastNameReq: 'Last name is required',
   emailReq: 'Email is required',
   passwordReq: 'Password is required',
   authKeyReq: 'Key is required',

@@ -92,10 +92,10 @@ export async function POST(req) {
             // CHECK PAYMENT TATUS
             axios.request(options).then(async (response) => {
                 if (response.data.success === true) {
-                    const url = `http://localhost:3000/success`
+                    const url = `${process.env.NEXT_PUBLIC_APP_URL}/success`
                     return res.redirect(url)
                 } else {
-                    const url = `http://localhost:3000/failure`
+                    const url = `${process.env.NEXT_PUBLIC_APP_URL}/failure`
                     return res.redirect(url)
                 }
             })

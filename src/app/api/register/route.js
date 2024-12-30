@@ -15,11 +15,14 @@ export async function POST(req) {
 	}
 	try {
 		const body = await req.json();
-		const { name, email, password, deviceToken } = body;
-		const fields = { name, email, password };
+		const { firstName, lastName, email, password, deviceToken } = body;
+		const fields = { firstName, lastName, email, password };
 		const emptyFieldErrors = {};
-		if (name.trim() === "") {
-			emptyFieldErrors.name = registerData.nameReq;
+		if (firstName.trim() === "") {
+			emptyFieldErrors.firstName = registerData.firstNameReq;
+		}
+		if (lastName.trim() === "") {
+			emptyFieldErrors.lastName = registerData.lastNameReq;
 		}
 		if (email.trim() === "") {
 			emptyFieldErrors.email = registerData.emailReq;
@@ -31,7 +34,8 @@ export async function POST(req) {
 			return NextResponse.json({ result: false, message: emptyFieldErrors });
 		};
 		const validatingFields = {
-			name: { type: "name", message: registerData.nameFieldVal },
+			firstName: { type: "firstName", message: registerData.nameFieldVal },
+			lastName: { type: "lastName", message: registerData.nameFieldVal },
 			email: { type: "email", message: registerData.emailValMsg },
 		};
 		let fieldErrors = validateFields(fields, validatingFields);
@@ -43,8 +47,9 @@ export async function POST(req) {
 		if (existUser) {
 			return NextResponse.json({ result: false, message: { email: responseData.emailExists } });
 		};
+		let name = firstName + ' ' + lastName;
 		const inserted = await prisma.user.create({
-			data: { name, email, password: hashedPassword, profileStatus: "Active", deviceToken, companyName: name },
+			data: { firstName, lastName, name, email, password: hashedPassword, profileStatus: "Active", deviceToken, companyName: name },
 		});
 		const createdBy = inserted.id;
 		await prisma.user.update({ where: { id: createdBy }, data: { createdBy } });

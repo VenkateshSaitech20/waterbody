@@ -4,11 +4,17 @@ import { capitalizeFirstLetter } from '@/utils/helper';
 import * as xlsx from 'xlsx';
 import bcrypt from 'bcrypt';
 const prisma = new PrismaClient();
-export const config = {
-    api: {
-        bodyParser: false,
-    },
-};
+
+// export const config = {
+//     api: {
+//         bodyParser: false,
+//     },
+// };
+
+export const runtime = 'nodejs';
+export const preferredRegion = 'auto';
+export const dynamic = 'force-dynamic';
+
 export async function POST(req) {
     try {
         const saltRounds = 10;

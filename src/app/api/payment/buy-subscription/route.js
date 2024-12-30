@@ -76,7 +76,7 @@ export async function POST(req) {
                 merchantUserId: "MUID123",
                 // name: name,
                 amount: prices[packagePlanType] * 100 || 0,
-                redirectUrl: `http://localhost:3000/payment/verify/?id=${merchantTransactionId}`,
+                redirectUrl: `${process.env.NEXT_PUBLIC_APP_URL}/payment/verify/?id=${merchantTransactionId}`,
                 redirectMode: 'REDIRECT',
                 mobileNumber: contactNo,
                 paymentInstrument: {

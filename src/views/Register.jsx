@@ -19,7 +19,7 @@ import TextFieldStyled from '@core/components/mui/TextField';
 import { getLocalizedUrl } from '@/utils/i18n';
 import { registerData, validations } from './../utils/message';
 import CustomInputLabel from '@/components/asterick';
-import useDeviceToken from '@/app/api/api-utlis/get-fcm-token';
+// import useDeviceToken from '@/app/api/api-utlis/get-fcm-token';
 import Loader from '@/components/loader';
 
 const RegisterIllustration = styled('img')(({ theme }) => ({
@@ -45,7 +45,8 @@ const Register = () => {
 	const theme = useTheme()
 	const handleClickShowPassword = () => setIsPasswordShown(show => !show)
 	const router = useRouter();
-	const deviceToken = useDeviceToken();
+	// const deviceToken = useDeviceToken();
+	const deviceToken = "";
 
 	const handleUserRegister = async (data) => {
 		setIsButtonLoading(true);
@@ -86,14 +87,26 @@ const Register = () => {
 						<TextFieldStyled
 							autoFocus
 							fullWidth
-							label={<CustomInputLabel htmlFor='name' text='Name' />}
+							label={<CustomInputLabel htmlFor='firstname' text='First Name' />}
 							variant='filled'
 							size={"small"}
 							InputLabelProps={{ shrink: true }}
-							placeholder='Enter your username'
-							{...register('name', { required: registerData.nameReq, validate: value => value.trim() !== '' || registerData.nameReq })}
-							error={!!errors.name || !!apiErrors?.name}
-							helperText={errors.name?.message || apiErrors?.name}
+							placeholder='Enter your first name'
+							{...register('firstName', { required: registerData.firstNameReq, validate: value => value.trim() !== '' || registerData.firstNameReq })}
+							error={!!errors.firstName || !!apiErrors?.firstName}
+							helperText={errors.firstName?.message || apiErrors?.firstName}
+						/>
+						<TextFieldStyled
+							autoFocus
+							fullWidth
+							label={<CustomInputLabel htmlFor='lastname' text='Last Name' />}
+							variant='filled'
+							size={"small"}
+							InputLabelProps={{ shrink: true }}
+							placeholder='Enter your last name'
+							{...register('lastName', { required: registerData.lastNameReq, validate: value => value.trim() !== '' || registerData.lastNameReq })}
+							error={!!errors.lastName || !!apiErrors?.lastName}
+							helperText={errors.lastName?.message || apiErrors?.lastName}
 						/>
 						<TextFieldStyled
 							fullWidth

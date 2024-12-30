@@ -10,6 +10,8 @@ datasource db {
 
 model user {
   id                String    @id @default(cuid())
+  firstName         String?
+  lastName          String?
   name              String?
   email             String?
   password          String?
@@ -77,8 +79,8 @@ model menus {
     permission      Json?
     path            String?
     sequence        String?
-    createdAt       DateTime           @default(now())
-    updatedAt       DateTime           @updatedAt
+    createdAt       DateTime  @default(now())
+    updatedAt       DateTime  @updatedAt
 }
 
 model system_settings {
@@ -584,8 +586,8 @@ model master_ayacutnoncultivation {
   slug      String
   createdBy String?
   updatedBy String?
-  createdAt DateTime @default(now()) @db.Date
-  updatedAt DateTime @default(now()) @db.Date
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
 }
 
 model master_boundary_drop_points {
@@ -594,8 +596,8 @@ model master_boundary_drop_points {
   slug      String
   createdBy String?
   updatedBy String?
-  createdAt DateTime @default(now()) @db.Date
-  updatedAt DateTime @default(now()) @db.Date
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
 }
 
 model master_bund_issue {
@@ -604,8 +606,8 @@ model master_bund_issue {
   slug      String
   createdBy String?
   updatedBy String?
-  createdAt DateTime @default(now()) @db.Date
-  updatedAt DateTime @default(now()) @db.Date
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
 }
 
 model master_barrel_types {
@@ -614,8 +616,8 @@ model master_barrel_types {
   slug      String
   createdBy String?
   updatedBy String?
-  createdAt DateTime @default(now()) @db.Date
-  updatedAt DateTime @default(now()) @db.Date
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
 }
 
 model master_bunds {
@@ -624,8 +626,8 @@ model master_bunds {
   slug      String
   createdBy String?
   updatedBy String?
-  createdAt DateTime @default(now()) @db.Date
-  updatedAt DateTime @default(now()) @db.Date
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
 }
 
 model master_conditions {
@@ -634,8 +636,8 @@ model master_conditions {
   slug      String
   createdBy String?
   updatedBy String?
-  createdAt DateTime @default(now()) @db.Date
-  updatedAt DateTime @default(now()) @db.Date
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
 }
 
 model master_catchment_types {
@@ -644,8 +646,8 @@ model master_catchment_types {
   slug      String
   createdBy String?
   updatedBy String?
-  createdAt DateTime @default(now()) @db.Date
-  updatedAt DateTime @default(now()) @db.Date
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
 }
 
 model master_croppings {
@@ -654,8 +656,8 @@ model master_croppings {
   slug      String
   createdBy String?
   updatedBy String?
-  createdAt DateTime @default(now()) @db.Date
-  updatedAt DateTime @default(now()) @db.Date
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
 }
 
 model master_cross_sections {
@@ -664,8 +666,8 @@ model master_cross_sections {
   slug      String
   createdBy String?
   updatedBy String?
-  createdAt DateTime @default(now()) @db.Date
-  updatedAt DateTime @default(now()) @db.Date
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
 }
 
 model master_distribution_lands {
@@ -674,8 +676,8 @@ model master_distribution_lands {
   slug      String
   createdBy String?
   updatedBy String?
-  createdAt DateTime @default(now()) @db.Date
-  updatedAt DateTime @default(now()) @db.Date
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
 }
 
 model master_depth_sill_levels {
@@ -684,8 +686,8 @@ model master_depth_sill_levels {
   slug      String
   createdBy String?
   updatedBy String?
-  createdAt DateTime @default(now()) @db.Date
-  updatedAt DateTime @default(now()) @db.Date
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
 }
 
 model master_exotic_species {
@@ -694,8 +696,8 @@ model master_exotic_species {
   slug      String
   createdBy String?
   updatedBy String?
-  createdAt DateTime @default(now()) @db.Date
-  updatedAt DateTime @default(now()) @db.Date
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
 }
 
 model master_family_natures {
@@ -704,8 +706,8 @@ model master_family_natures {
   slug      String
   createdBy String?
   updatedBy String?
-  createdAt DateTime @default(now()) @db.Date
-  updatedAt DateTime @default(now()) @db.Date
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
 }
 
 model master_field_channel_types {
@@ -714,8 +716,8 @@ model master_field_channel_types {
   slug      String
   createdBy String?
   updatedBy String?
-  createdAt DateTime @default(now()) @db.Date
-  updatedAt DateTime @default(now()) @db.Date
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
 }
 
 model master_fence_conditions {
@@ -724,8 +726,8 @@ model master_fence_conditions {
   slug      String
   createdBy String?
   updatedBy String?
-  createdAt DateTime @default(now()) @db.Date
-  updatedAt DateTime @default(now()) @db.Date
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
 }
 
 model master_fence_types {
@@ -734,8 +736,8 @@ model master_fence_types {
   slug      String
   createdBy String?
   updatedBy String?
-  createdAt DateTime @default(now()) @db.Date
-  updatedAt DateTime @default(now()) @db.Date
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
 }
 
 model master_ghat_conditions {
@@ -744,8 +746,8 @@ model master_ghat_conditions {
   slug      String
   createdBy String?
   updatedBy String?
-  createdAt DateTime @default(now()) @db.Date
-  updatedAt DateTime @default(now()) @db.Date
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
 }
 
 model master_inlet_types {
@@ -754,8 +756,8 @@ model master_inlet_types {
   slug      String
   createdBy String?
   updatedBy String?
-  createdAt DateTime @default(now()) @db.Date
-  updatedAt DateTime @default(now()) @db.Date
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
 }
 
 model master_nature_investments {
@@ -764,8 +766,8 @@ model master_nature_investments {
   slug      String
   createdBy String?
   updatedBy String?
-  createdAt DateTime @default(now()) @db.Date
-  updatedAt DateTime @default(now()) @db.Date
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
 }
 
 model master_ownerships {
@@ -774,8 +776,8 @@ model master_ownerships {
   slug      String
   createdBy String?
   updatedBy String?
-  createdAt DateTime @default(now()) @db.Date
-  updatedAt DateTime @default(now()) @db.Date
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
 }
 
 model master_outlet_types {
@@ -784,8 +786,8 @@ model master_outlet_types {
   slug      String
   createdBy String?
   updatedBy String?
-  createdAt DateTime @default(now()) @db.Date
-  updatedAt DateTime @default(now()) @db.Date
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
 }
 
 model master_oorani_functions {
@@ -794,8 +796,8 @@ model master_oorani_functions {
   slug      String
   createdBy String?
   updatedBy String?
-  createdAt DateTime @default(now()) @db.Date
-  updatedAt DateTime @default(now()) @db.Date
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
 }
 
 model master_mwl_stones {
@@ -804,8 +806,8 @@ model master_mwl_stones {
   slug      String
   createdBy String?
   updatedBy String?
-  createdAt DateTime @default(now()) @db.Date
-  updatedAt DateTime @default(now()) @db.Date
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
 }
 
 model master_pitching_conditions {
@@ -814,8 +816,8 @@ model master_pitching_conditions {
   slug      String
   createdBy String?
   updatedBy String?
-  createdAt DateTime @default(now()) @db.Date
-  updatedAt DateTime @default(now()) @db.Date
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
 }
 
 model master_sources {
@@ -824,8 +826,8 @@ model master_sources {
   slug      String
   createdBy String?
   updatedBy String?
-  createdAt DateTime @default(now()) @db.Date
-  updatedAt DateTime @default(now()) @db.Date
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
 }
 
 model master_spread_issues {
@@ -834,8 +836,8 @@ model master_spread_issues {
   slug      String
   createdBy String?
   updatedBy String?
-  createdAt DateTime @default(now()) @db.Date
-  updatedAt DateTime @default(now()) @db.Date
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
 }
 
 model master_sluices_surplus_types {
@@ -844,8 +846,8 @@ model master_sluices_surplus_types {
   slug      String
   createdBy String?
   updatedBy String?
-  createdAt DateTime @default(now()) @db.Date
-  updatedAt DateTime @default(now()) @db.Date
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
 }
 
 model master_surplus_weirs {
@@ -854,8 +856,8 @@ model master_surplus_weirs {
   slug      String
   createdBy String?
   updatedBy String?
-  createdAt DateTime @default(now()) @db.Date
-  updatedAt DateTime @default(now()) @db.Date
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
 }
 
 model master_slit_traps {
@@ -864,8 +866,8 @@ model master_slit_traps {
   slug      String
   createdBy String?
   updatedBy String?
-  createdAt DateTime @default(now()) @db.Date
-  updatedAt DateTime @default(now()) @db.Date
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
 }
 
 model master_stream_issues {
@@ -874,8 +876,8 @@ model master_stream_issues {
   slug      String
   createdBy String?
   updatedBy String?
-  createdAt DateTime @default(now()) @db.Date
-  updatedAt DateTime @default(now()) @db.Date
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
 }
 
 model master_shutters {
@@ -884,8 +886,8 @@ model master_shutters {
   slug      String
   createdBy String?
   updatedBy String?
-  createdAt DateTime @default(now()) @db.Date
-  updatedAt DateTime @default(now()) @db.Date
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
 }
 
 model master_shutter_conditions {
@@ -894,8 +896,8 @@ model master_shutter_conditions {
   slug      String
   createdBy String?
   updatedBy String?
-  createdAt DateTime @default(now()) @db.Date
-  updatedAt DateTime @default(now()) @db.Date
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
 }
 
 model master_stone_pitchings {
@@ -904,8 +906,8 @@ model master_stone_pitchings {
   slug      String
   createdBy String?
   updatedBy String?
-  createdAt DateTime @default(now()) @db.Date
-  updatedAt DateTime @default(now()) @db.Date
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
 }
 
 model master_types {
@@ -914,8 +916,8 @@ model master_types {
   slug      String
   createdBy String?
   updatedBy String?
-  createdAt DateTime @default(now()) @db.Date
-  updatedAt DateTime @default(now()) @db.Date
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
 }
 
 model master_tank_functions {
@@ -924,8 +926,8 @@ model master_tank_functions {
   slug      String
   createdBy String?
   updatedBy String?
-  createdAt DateTime @default(now()) @db.Date
-  updatedAt DateTime @default(now()) @db.Date
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
 }
 
 model master_tank_types {
@@ -934,8 +936,8 @@ model master_tank_types {
   slug      String
   createdBy String?
   updatedBy String?
-  createdAt DateTime @default(now()) @db.Date
-  updatedAt DateTime @default(now()) @db.Date
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
 }
 
 model master_tank_uniqueness {
@@ -944,8 +946,8 @@ model master_tank_uniqueness {
   slug      String
   createdBy String?
   updatedBy String?
-  createdAt DateTime @default(now()) @db.Date
-  updatedAt DateTime @default(now()) @db.Date
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
 }
 
 model master_temple_tank_types {
@@ -954,8 +956,8 @@ model master_temple_tank_types {
   slug      String
   createdBy String?
   updatedBy String?
-  createdAt DateTime @default(now()) @db.Date
-  updatedAt DateTime @default(now()) @db.Date
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
 }
 
 model master_tank_issues {
@@ -964,8 +966,8 @@ model master_tank_issues {
   slug      String
   createdBy String?
   updatedBy String?
-  createdAt DateTime @default(now()) @db.Date
-  updatedAt DateTime @default(now()) @db.Date
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
 }
 
 model block {
@@ -1252,8 +1254,8 @@ model master_dam_stones {
   slug      String
   createdBy String?
   updatedBy String?
-  createdAt DateTime @default(now()) @db.Date
-  updatedAt DateTime @default(now()) @db.Date
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
 }
 
 model master_free_catchment {
@@ -1262,8 +1264,8 @@ model master_free_catchment {
   slug      String
   createdBy String?
   updatedBy String?
-  createdAt DateTime @default(now()) @db.Date
-  updatedAt DateTime @default(now()) @db.Date
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
 }
 
 model master_water_spread_area {
@@ -1272,8 +1274,8 @@ model master_water_spread_area {
   slug      String
   createdBy String?
   updatedBy String?
-  createdAt DateTime @default(now()) @db.Date
-  updatedAt DateTime @default(now()) @db.Date
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
 }
 
 model master_surplus_weirs_parameters {
@@ -1282,8 +1284,8 @@ model master_surplus_weirs_parameters {
   slug      String
   createdBy String?
   updatedBy String?
-  createdAt DateTime @default(now()) @db.Date
-  updatedAt DateTime @default(now()) @db.Date
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
 }
 
 model master_invasive_species {
@@ -1292,8 +1294,8 @@ model master_invasive_species {
   slug      String
   createdBy String?
   updatedBy String?
-  createdAt DateTime @default(now()) @db.Date
-  updatedAt DateTime @default(now()) @db.Date
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
 }
 
 model master_retaining_walls {
@@ -1302,8 +1304,8 @@ model master_retaining_walls {
   slug      String
   createdBy String?
   updatedBy String?
-  createdAt DateTime @default(now()) @db.Date
-  updatedAt DateTime @default(now()) @db.Date
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
 }
 
 model master_retaining_wall_condition {
@@ -1312,8 +1314,8 @@ model master_retaining_wall_condition {
   slug      String
   createdBy String?
   updatedBy String?
-  createdAt DateTime @default(now()) @db.Date
-  updatedAt DateTime @default(now()) @db.Date
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
 }
 
 model master_encroachment_details {
@@ -1322,8 +1324,8 @@ model master_encroachment_details {
   slug      String
   createdBy String?
   updatedBy String?
-  createdAt DateTime @default(now()) @db.Date
-  updatedAt DateTime @default(now()) @db.Date
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
 }
 
 model master_surplus_issues {
@@ -1332,8 +1334,8 @@ model master_surplus_issues {
   slug      String
   createdBy String?
   updatedBy String?
-  createdAt DateTime @default(now()) @db.Date
-  updatedAt DateTime @default(now()) @db.Date
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
 }
 
 model master_encroachers_living_standard {
@@ -1342,6 +1344,296 @@ model master_encroachers_living_standard {
   slug      String
   createdBy String?
   updatedBy String?
-  createdAt DateTime @default(now()) @db.Date
-  updatedAt DateTime @default(now()) @db.Date
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
+}
+
+model master_encroachers_alternative_housing {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
+}
+
+model master_boundary_stone {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
+}
+
+model master_activities_undertaken {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
+}
+
+model master_nature_of_beds {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
+}
+
+model master_nature_of_embankment {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
+}
+
+model master_current_status {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
+}
+
+model master_wall_damage_directions {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
+}
+
+model master_nature_of_encroachment {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
+}
+
+model master_status_of_eviction {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
+}
+
+model master_past_sources_supply {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
+}
+
+model master_nature_walking_pavements {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
+}
+
+model master_walking_pavement_conditions {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
+}
+
+model master_fence {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
+}
+
+model master_recreational_area_conditions {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
+}
+
+model master_channel_types {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
+}
+
+model master_canal_types {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
+}
+
+model master_canal_system_names {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
+}
+
+model master_canal_cross_section {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
+}
+
+model master_channel_sources_supply {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
+}
+
+model master_canal_issues {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
+}
+
+model master_dam_conditions {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
+}
+
+model master_channel_activities_undertaken {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
+}
+
+model master_channel_issues_stream {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
+}
+
+model master_river_issues_stream {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
+}
+
+model master_surplus_upper_tank_stream_issues {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
+}
+
+model master_oorani_bund_issues {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
+}
+
+model master_eviction_surrplus_course_status {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
+}
+
+model master_temple_tank_source_supply {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
+}
+
+model master_free_catchment_stream_issues {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(200)
+  slug      String
+  createdBy String?
+  updatedBy String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
 }

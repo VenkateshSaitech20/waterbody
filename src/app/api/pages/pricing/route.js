@@ -6,19 +6,19 @@
  * ! else you can use the server actions or third-party APIs to fetch the data from your database.
  */
 // Next Imports
-import { NextResponse } from 'next/server'
+// import { NextResponse } from 'next/server'
 
 // Data Imports
 // import { db } from '@/fake-db/pages/pricing'
-import db from '../../../../configs/db'
+// import db from '../../../../configs/db'
 
-export async function GET() {
-  return new Promise((resolve, reject) => {
-    db.query('SELECT * FROM your_table_name', (err, results) => {
-      if (err) {
-        return reject(NextResponse.json({ error: "Database query failed" }, { status: 500 }));
-      }
-      return resolve(NextResponse.json(results));
-    });
-  });
-}
+// export async function GET() {
+//   return new Promise((resolve, reject) => {
+//     db.query('SELECT * FROM your_table_name', (err, results) => {
+//       if (err) {
+//         return reject(NextResponse.json({ error: "Database query failed" }, { status: 500 }));
+//       }
+//       return resolve(NextResponse.json(results));
+//     });
+//   });
+// }

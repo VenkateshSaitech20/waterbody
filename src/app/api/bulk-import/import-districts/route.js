@@ -6,11 +6,15 @@ import { registerData, responseData } from '@/utils/message';
 import { updateApiDataVersion } from '../../api-utlis/api-data-version';
 const prisma = new PrismaClient();
 
-export const config = {
-    api: {
-        bodyParser: false,
-    },
-};
+// export const config = {
+//     api: {
+//         bodyParser: false,
+//     },
+// };
+
+export const runtime = 'nodejs';
+export const preferredRegion = 'auto';
+export const dynamic = 'force-dynamic';
 
 export async function POST(req) {
     try {

@@ -3,6 +3,7 @@ import { PrismaClient } from '@prisma/client';
 import { extractTokenData } from '@/utils/helper';
 import { responseData } from '@/utils/message';
 const prisma = new PrismaClient();
+
 export async function POST(req) {
     try {
         const token = extractTokenData(req.headers);

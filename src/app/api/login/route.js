@@ -25,11 +25,16 @@ export async function POST(req) {
       if (password) {
         const isPasswordvalid = await bcrypt.compare(password, user.password);
         if (isPasswordvalid) {
+          const apiDataVersion = await prisma.api_data_version.findFirst({
+            select:
+              { version: true }
+          });
           let userDetail = {
             id: user.id,
             name: user.name,
             email: user.email,
             roleId: user.roleId,
+            apiDataVersion: apiDataVersion.version,
             createdBy: user.createdBy,
             subscriptionPlan: user.subscriptionPlan
           }

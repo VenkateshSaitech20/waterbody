@@ -39,7 +39,6 @@ export async function PUT(req) {
         const user = await prisma.user.findUnique({ where: { id: token.id, isDeleted: "N" } });
         let userId = user.id;
         const oldImageUrl = user.image;
-
         if (!userId) {
             return NextResponse.json({ result: false, message: { userNotFound: responseData.userNotFound } });
         }
@@ -51,10 +50,13 @@ export async function PUT(req) {
         for (const [key, value] of formData.entries()) {
             fields[key] = value;
         }
-        const { name, email, contactNo, address, stateId, zipCode, countryId, companyName } = fields;
+        const { firstName, lastName, email, contactNo, address, stateId, zipCode, countryId, companyName } = fields;
         const emptyFieldErrors = {};
-        if (name.trim() === "") {
-            emptyFieldErrors.name = registerData.nameReq;
+        if (firstName.trim() === "") {
+            emptyFieldErrors.firstName = registerData.firstNameReq;
+        }
+        if (lastName.trim() === "") {
+            emptyFieldErrors.lastName = registerData.lastNameReq;
         }
         if (email.trim() === "") {
             emptyFieldErrors.email = registerData.emailReq;
@@ -63,17 +65,18 @@ export async function PUT(req) {
             return NextResponse.json({ result: false, message: emptyFieldErrors });
         }
         const validatingFields = {
-            name: { type: "name", message: registerData.nameFieldVal },
+            firstName: { type: "firstName", message: registerData.nameFieldVal },
+            lastName: { type: "lastName", message: registerData.nameFieldVal },
             email: { type: "email", message: registerData.emailValMsg },
             contactNo: { type: "mobileNumber", message: registerData.phoneValMsg },
             address: { type: "address", message: registerData.addressValMsg },
             zipCode: { type: "number", message: registerData.zipFieldVal },
-            companyName: { type: "name", message: registerData.companyFieldVal },
         }
         let fieldErrors = validateFields(fields, validatingFields);
         if (Object.keys(fieldErrors).length > 0) {
             return NextResponse.json({ result: false, message: fieldErrors });
         }
+        let name = firstName + ' ' + lastName;
         let country = "";
         let phoneCode = "";
         let state = "";
@@ -139,6 +142,8 @@ export async function PUT(req) {
         await prisma.user.update({
             where: { id: userId },
             data: {
+                firstName,
+                lastName,
                 name,
                 email,
                 contactNo,
@@ -162,10 +167,8 @@ export async function PUT(req) {
                 console.error('Failed to delete old image:', error);
             }
         }
-
         return NextResponse.json({ result: true, message: responseData.profileUpdated });
     } catch (error) {
-        console.log("ERROR IN PUT: ", error.message);
         return NextResponse.json({ result: false, message: error.message });
     }
 }

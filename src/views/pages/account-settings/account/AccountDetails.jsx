@@ -90,8 +90,9 @@ const AccountDetails = () => {
         setIsLoading(true);
         const response = await apiClient.get(`/api/profile`);
         if (response.data.result === true) {
-            const { name, email, companyName, contactNo, address, stateId, zipCode, countryId, image } = response.data.message;
-            setValue('name', name);
+            const { firstName, lastName, email, companyName, contactNo, address, stateId, zipCode, countryId, image } = response.data.message;
+            setValue('firstName', firstName);
+            setValue('lastName', lastName);
             setValue('email', email);
             setValue('companyName', companyName);
             setValue('contactNo', contactNo);
@@ -174,11 +175,24 @@ const AccountDetails = () => {
                                         variant='filled'
                                         size={"small"}
                                         InputLabelProps={{ shrink: true }}
-                                        label={<CustomInputLabel htmlFor='name' text='Name' />}
+                                        label={<CustomInputLabel htmlFor='first name' text='First Name' />}
                                         placeholder='John'
-                                        error={!!errors?.name || apiErrors?.name}
-                                        helperText={errors?.name?.message || apiErrors?.name}
-                                        {...register('name', { required: registerData.nameReq, validate: value => value.trim() !== '' || registerData.nameReq })}
+                                        error={!!errors?.firstName || apiErrors?.firstName}
+                                        helperText={errors?.firstName?.message || apiErrors?.firstName}
+                                        {...register('firstName', { required: registerData.firstNameReq, validate: value => value.trim() !== '' || registerData.firstNameReq })}
+                                    />
+                                </Grid>
+                                <Grid item xs={12} sm={6}>
+                                    <TextFieldStyled
+                                        fullWidth
+                                        variant='filled'
+                                        size={"small"}
+                                        InputLabelProps={{ shrink: true }}
+                                        label={<CustomInputLabel htmlFor='last name' text='Last Name' />}
+                                        placeholder='John'
+                                        error={!!errors?.lastName || apiErrors?.lastName}
+                                        helperText={errors?.lastName?.message || apiErrors?.lastName}
+                                        {...register('lastName', { required: registerData.lastNameReq, validate: value => value.trim() !== '' || registerData.lastNameReq })}
                                     />
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
